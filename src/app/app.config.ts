@@ -1,27 +1,32 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import {environment} from '../environments/environment';
-import {provideKeycloak} from 'keycloak-angular';
-import {KeycloakOnLoad} from 'keycloak-js';
+import {initializeKeycloak} from './core/auth/KeycloakFactory';
+import {KeycloakBearerInterceptor, KeycloakService} from 'keycloak-angular';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideKeycloak({
-      config: {
-        url: environment.keycloak.config.url,
-        realm: environment.keycloak.config.realm,
-        clientId: environment.keycloak.config.clientId
-      },
-      initOptions: {
-        onLoad: environment.keycloak.initOptions.onLoad as KeycloakOnLoad,
-        checkLoginIframe: environment.keycloak.initOptions.checkLoginIframe
-      }
-    }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      deps: [KeycloakService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true
+    }
   ]
+
 };
