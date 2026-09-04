@@ -1,12 +1,23 @@
 import { Routes } from '@angular/router';
-import {
-  BookingListComponentComponent
-} from './features/booking/booking-list-component/booking-list-component.component';
-import {BookingDetailComponent} from './features/booking/booking-detail/booking-detail.component';
 
 export const routes: Routes = [
-  {path:'',children:[
-      {path:'',component:BookingListComponentComponent},
-      {path:'details',component:BookingDetailComponent}
-    ]}
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./features/dashboard/dashboard.component')
+        .then(m => m.DashboardComponent),
+  },
+
+  {
+    path: 'booking',
+    loadComponent: () =>
+      import('./features/booking/booking-list-component/booking-list-component.component')
+        .then(m => m.BookingListComponentComponent)
+  }
 ];

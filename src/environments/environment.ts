@@ -1,9 +1,11 @@
 export const environment = {
   production: false,
-  api:'http://187.124.35.145:9092',
+  //api:'https://customer.morocco-food-tours.com',
+  api:'http://localhost:9092',
   keycloak: {
     config: {
-      url: 'http://187.124.35.145:8080',
+  //    url: 'https://auth.morocco-food-tours.com',
+      url: 'http://localhost:8080',
       realm: 'rent-flow',
       clientId: 'rentflow'
     },

@@ -1,16 +1,30 @@
-import {APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, isDevMode, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import {initializeKeycloak} from './core/auth/KeycloakFactory';
 import {KeycloakBearerInterceptor, KeycloakService} from 'keycloak-angular';
-import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
-
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideState, provideStore} from '@ngrx/store';
+import {connectedOwnerReducer, connectedUserNameFeatureKey, OwnersEffects, reducers} from './store/state/owners';
+import {provideEffects} from '@ngrx/effects';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {BookingEffects, bookingsFeatureKey, bookingsReducer} from './store/state/bookings';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideStore(reducers),
+    provideState({name:connectedUserNameFeatureKey,reducer:connectedOwnerReducer}),
+    provideState({name:bookingsFeatureKey,reducer:bookingsReducer}),
+    provideEffects(OwnersEffects,BookingEffects),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      autoPause: true,
+      trace: false,
+    }),
     provideClientHydration(withEventReplay()),
     provideHttpClient(
       withInterceptorsFromDi()

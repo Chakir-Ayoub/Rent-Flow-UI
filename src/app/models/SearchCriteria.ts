@@ -1,3 +1,3 @@
 export class SearchCriteria{
-  relatedName!:String;
+  relatedName!:string;
 }
