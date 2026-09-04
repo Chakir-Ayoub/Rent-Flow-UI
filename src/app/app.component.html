@@ -1,9 +1,8 @@
-<div class="flex flex-column min-h-screen">
-  <app-header></app-header>
-
-  <main class="flex-1 p-4 surface-ground">
-    <router-outlet></router-outlet>
-  </main>
-
-  <app-footer></app-footer>
-</div>
+<app-sidebar
+  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+  (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
+></app-sidebar>
+<app-layout
+  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+  [screenWidth]="screenWidth()"
+/>

@@ -1,0 +1,12 @@
+export enum Bedtype{
+  BED_SINGLE,
+  BED_DOUBLE,
+  BED_QUEEN,
+  BED_KING,
+  LINEN,
+  PILLOWS,
+  BLANKETS,
+  WARDROBE,
+  HANGERS,
+  CURTAINS,
+}
