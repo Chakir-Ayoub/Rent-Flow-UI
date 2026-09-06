@@ -10,3 +10,9 @@ export const fetchBookingsFailed=createAction('[Booking] Fetch Booking FAILED');
 export const fetchBookingBySelectedPropertyAction=createAction('[Booking] Fetch Booking By SelectedProperty',props<{ selectedProperty: SearchCriteria,page:number,size:number }>());
 export const fetchBookingBySelectedPropertySuccess=createAction('[Booking] Fetch Booking By SelectedProperty SUCCESS',props<{bookings:PageResponseDto<Booking>}>());
 export const fetchBookingBySelectedPropertyFailed=createAction('[Booking] Fetch Booking By SelectedProperty FAILED');
+
+
+export const setSelectedPropertyName = createAction(
+  '[Bookings] Set Selected Property Name',
+  props<{ propertyName: any }>()
+);

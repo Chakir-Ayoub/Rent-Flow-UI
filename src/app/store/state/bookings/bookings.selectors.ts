@@ -27,3 +27,9 @@ export const selectIsLoading = createSelector(
   selectBookingsState,
   (state) => state.isLoading
 );
+
+
+export const selectSelectedPropertyName = createSelector(
+  selectBookingsState,
+  (state) => state?.selectedPropertyName ?? null
+);
