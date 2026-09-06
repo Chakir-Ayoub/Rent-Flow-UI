@@ -1,0 +1,233 @@
+<!-- Page Title and Breadcrumb -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-outline-variant/30 pb-6">
+  <div class="space-y-2">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+      <a class="hover:text-secondary transition-colors" href="#">HOTEL MANAGEMENT</a>
+      <span class="text-outline-variant">/</span>
+      <a class="hover:text-secondary transition-colors" href="#">ACTIVITIES</a>
+      <span class="text-outline-variant">/</span>
+      <span class="text-secondary font-bold">NEW ACTIVITY</span>
+    </nav>
+    <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-primary">
+      NEW ACTIVITY
+    </h2>
+    <p class="text-sm sm:text-base text-on-surface-variant font-normal">
+      Configure and publish a new service for your establishment
+    </p>
+  </div>
+  <!-- Action metadata badges -->
+  <div class="flex flex-wrap items-center gap-2.5">
+    <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high border border-outline-variant/30 text-xs font-medium text-primary">
+      <span class="material-symbols-outlined text-[16px] text-secondary">domain</span>
+      <span>{{selectedProperty$()  }}</span>
+    </div>
+
+  </div>
+</div>
+<!-- 2 Columns Layout (60% / 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <!-- LEFT COLUMN : Form ActivityDto (60% -> col-span-7) -->
+  <section class="lg:col-span-7 flex flex-col gap-6">
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 shadow-sm p-6 sm:p-8 relative overflow-hidden">
+      <form class="space-y-6" id="activityForm" [formGroup]="activityForm" (ngSubmit)="create()">
+        <!-- Property Code Target (Read-only reference) -->
+        <div class="p-3.5 bg-surface-container-low rounded-lg border border-outline-variant/40 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-secondary">apartment</span>
+            <div>
+              <span class="text-[11px] font-semibold tracking-wider uppercase text-on-surface-variant block leading-tight">Target Property</span>
+              <span class="text-xs font-bold text-primary font-mono">{{selectedProperty$() }}</span>
+            </div>
+          </div>
+          <span class="text-[11px] bg-white border border-outline-variant/40 text-on-surface-variant px-2 py-0.5 rounded font-mono">ID: 89410</span>
+        </div>
+        <!-- Champ 1 : Titre de l'activité (title) -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5" for="inputTitle">
+              Activity Title <span class="text-error">*</span>
+              <span class="text-[10px] font-mono px-1 py-0.2 rounded bg-surface-container text-on-surface-variant font-normal">property: title</span>
+            </label>
+            <span class="text-[11px] text-on-surface-variant">Visible to the traveler</span>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
+              <span class="material-symbols-outlined text-lg">spa</span>
+            </div>
+            <input class="w-full pl-10 pr-4 py-2.5 text-sm font-semibold text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition" id="inputTitle" name="title" oninput="updatePreview()"
+                   placeholder="Ex: Relaxation treatment, Atlas quad biking, Royal dinner..." required="" type="text" value="" formControlName="title" />
+          </div>
+        </div>
+        <!-- Champ 2 : Description de la prestation (description) -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5" for="inputDescription">
+              Detailed description <span class="text-error">*</span>
+              <span class="text-[10px] font-mono px-1 py-0.2 rounded bg-surface-container text-on-surface-variant font-normal">property: description</span>
+            </label>
+            <span class="text-[11px] text-on-surface-variant">Visible to the traveler</span>
+          </div>
+          <div class="relative">
+            <textarea class="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition resize-none" id="inputDescription" name="description" oninput="updatePreview()"
+                      placeholder="Detailed description of the activity, meeting place or services included..." required="" rows="3"  formControlName="description"></textarea>
+          </div>
+        </div>
+        <!-- Champ 3 : Tarif unitaire en € (price) -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5" for="inputPrice">
+              Unit price (including VAT) <span class="text-error">*</span>
+              <span class="text-[10px] font-mono px-1 py-0.2 rounded bg-surface-container text-on-surface-variant font-normal">property: price</span>
+            </label>
+            <span class="text-[11px] text-on-surface-variant">Visible to the traveler</span>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
+              <span class="material-symbols-outlined text-lg">payments</span>
+            </div>
+            <input class="w-full pl-10 pr-12 py-2.5 text-sm font-bold text-primary bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition" id="inputPrice" min="0" name="price" oninput="updatePreview()" placeholder="0.00" required="" step="0.01"
+                   type="number" value="" formControlName="price"/>
+            <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-sm font-bold text-on-surface-variant">
+              € EUR
+            </div>
+          </div>
+        </div>
+        <!-- Options avancées de configuration -->
+        <div class="pt-4 border-t border-outline-variant/30 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Capacité -->
+          <div class="space-y-1">
+            <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="inputCapacity">
+              <span class="material-symbols-outlined text-sm">group</span>
+              Maximum capacity / slot
+            </label>
+            <select class="w-full px-3 py-2 text-xs font-medium bg-surface-container-low border border-outline-variant/60 rounded-lg text-primary outline-none focus:ring-1 focus:ring-secondary" id="inputCapacity">
+              <option value="2">2 participants (Couple)</option>
+              <option selected="" value="4">4 participants</option>
+              <option value="8">8 participants (Groupe)</option>
+              <option value="15">15 participants (Collectif)</option>
+            </select>
+          </div>
+          <!-- Durée estimée -->
+          <div class="space-y-1">
+            <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="inputDuration">
+              <span class="material-symbols-outlined text-sm">schedule</span>
+              Estimated duration
+            </label>
+            <input class="w-full px-3 py-2 text-xs font-medium bg-surface-container-low border border-outline-variant/60 rounded-lg text-primary outline-none focus:ring-1 focus:ring-secondary" id="inputDuration" placeholder="Ex: 1h30" type="text" value="1h 30min"/>
+          </div>
+        </div>
+        <!-- Toggle Statut Initial -->
+        <div class="flex items-center justify-between p-3.5 bg-surface-container-low/60 rounded-lg border border-outline-variant/40">
+          <div class="flex items-center gap-3">
+            <div class="size-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <span class="material-symbols-outlined text-base">visibility</span>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary block">Initial status of the service</span>
+              <span class="text-[11px] text-on-surface-variant">The activity will be bookable immediately after confirmation.</span>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input checked="" class="sr-only peer" id="statusToggle" onchange="updatePreview()" type="checkbox"/>
+            <div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+          </label>
+        </div>
+        <!-- Actions du Formulaire -->
+        <div class="pt-4 border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button class="px-4 py-2 rounded-lg text-xs font-semibold text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-1" onclick="resetForm()" type="button">
+              <span class="material-symbols-outlined text-sm">restart_alt</span>
+              Reset
+            </button>
+            <button class="px-4 py-2 rounded-lg text-xs font-semibold text-primary hover:bg-surface-container-high border border-outline-variant/40 transition-colors" type="button">
+              Save as draft
+            </button>
+          </div>
+          <button class="px-6 py-2.5 rounded-lg bg-secondary text-white hover:bg-secondary/95 text-xs font-bold shadow-md shadow-secondary/20 flex items-center gap-2 transition transform active:scale-95"
+                  [disabled]="activityForm.invalid"
+                  type="submit">
+            <span class="material-symbols-outlined text-base">add_circle</span>
+             Save and Create the Activity
+          </button>
+        </div>
+        <!-- Feedback Message -->
+        <div class="hidden p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-emerald-900 text-xs font-medium flex items-center gap-2" id="successBanner">
+          <span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+          Activité POSTée avec succès sur <strong>{{selectedProperty$()  }}</strong> (HTTP 201 Created).
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- RIGHT COLUMN : Live Client Preview & JSON DTO (40% -> col-span-5) -->
+  <section class="lg:col-span-5 flex flex-col gap-6">
+    <!-- Carte 1 : Aperçu de la Carte Client Front-Office -->
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 shadow-sm overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container border-b border-outline-variant/30 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-secondary">preview</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-primary">Customer Overview / Front-End Catalog</span>
+        </div>
+        <span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant/30">
+              Live Rendering
+            </span>
+      </div>
+      <div class="p-5">
+        <!-- Simulated Hotel Card Component -->
+        <div class="border border-outline-variant/40 rounded-xl overflow-hidden shadow-sm bg-white hover:shadow-md transition-shadow group">
+          <!-- Visual Header with Image Placeholder -->
+          <div class="relative h-44 w-full bg-primary overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxurious Moroccan resort spa lounge illuminated by gentle evening ambient lighting with warm candle lantern glow, modern minimalist marble fixtures, relaxation pool reflection, and authentic architecture adhering to an elegant navy and clean white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ4uHlpD4YUIT4csQzAbUlUAP-36yCdLMUhm-biorthqXJBHVVAkD_9vD4d2cQ2cmD-y99zOgElBHPhQCVz-GdTziwNsAGPJ-yUnDIc7BGNf9OVc_AL62Sc4eCMSUBwjREfIobW7LaznYIHege8UxCKG7ARQWPAuLYVSvWSXobO240K6G1DZoHzuohM3XHXiJftQMf600rTBDHgUwIC8v_6odjrkKceFp2YZXs0bS3gkhQa4zbfzVnCQ"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
+            <!-- Status Badge -->
+            <div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500 text-white shadow" id="previewBadge">
+<span class="size-1.5 rounded-full bg-white animate-ping"></span>
+                    Disponible
+                  </span>
+            </div>
+            <!-- Price overlay badge -->
+            <div class="absolute bottom-3 right-3 text-right">
+              <span class="text-[10px] text-surface-container-highest uppercase tracking-wider block">Indicative price</span>
+              <span class="text-lg font-black text-white bg-primary-container/80 px-2.5 py-0.5 rounded backdrop-blur" id="previewPrice">
+                    {{price.value}} € <span class="text-xs font-normal text-white/80">/ pers.</span>
+</span>
+            </div>
+          </div>
+          <!-- Card Content -->
+          <div class="p-4 space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">hotel</span> {{selectedProperty$()}}
+                    </span>
+                <h4 class="text-base font-bold text-primary mt-0.5" id="previewTitle">
+                  {{title.value}}
+                </h4>
+              </div>
+              <div class="size-8 rounded-lg bg-surface-container-low text-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-lg">spa</span>
+              </div>
+            </div>
+            <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed font-normal" id="previewDesc">
+              {{description.value}}
+
+            </p>
+            <div class="pt-2.5 border-t border-outline-variant/30 flex items-center justify-between text-xs text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 1h 30min
+                  </span>
+              <span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">person</span> Max 4 pers.
+                  </span>
+              <button class="px-3 py-1 bg-primary text-white rounded text-[11px] font-bold hover:bg-secondary transition-colors">
+                To book
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

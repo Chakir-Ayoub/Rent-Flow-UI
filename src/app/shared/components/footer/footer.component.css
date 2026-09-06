@@ -1,0 +1,12 @@
+.app-footer{
+  height:60px;
+  background:#ffffff;
+  border-top:1px solid #e5e7eb;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 30px;
+  color:#64748b;
+  font-size:14px;
+  box-shadow:0 -2px 8px rgba(0,0,0,.03);
+}

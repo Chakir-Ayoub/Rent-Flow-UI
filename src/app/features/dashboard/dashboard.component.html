@@ -1,0 +1,959 @@
+<div
+  class="dashboard"
+  [class.sidebar-collapsed]="sidebarCollapsed"
+>
+
+  <!-- ========================================================= -->
+  <!-- SIDEBAR -->
+  <!-- ========================================================= -->
+
+  <!-- ========================================================= -->
+  <!-- MAIN -->
+  <!-- ========================================================= -->
+
+  <div class="main-container">
+
+
+
+
+
+    <!-- ======================================================= -->
+    <!-- CONTENT -->
+    <!-- ======================================================= -->
+
+    <main class="dashboard-content">
+
+      <!-- COMMAND HEADER -->
+
+      <section class="command-header">
+
+        <div>
+
+          <div class="breadcrumb">
+
+            <span>
+              Hotel Management
+            </span>
+
+            <span class="material-symbols-outlined">
+              chevron_right
+            </span>
+
+            <span class="current">
+              {{currentMonthYear}}
+            </span>
+
+          </div>
+
+          <h1>
+            Dashboard — Overview
+          </h1>
+
+        </div>
+
+
+        <div class="command-actions">
+
+          <!-- Date -->
+
+          <div class="date-filter">
+
+            <span class="material-symbols-outlined">
+              calendar_today
+            </span>
+
+            <span>
+              01 Oct - 31 Oct 2024
+            </span>
+
+            <button>
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </button>
+
+          </div>
+
+
+          <!-- Export -->
+
+          <button
+            class="secondary-action"
+            (click)="exportData()"
+          >
+
+            <span class="material-symbols-outlined">
+              ios_share
+            </span>
+
+            <span>
+              Export
+            </span>
+
+          </button>
+
+
+          <!-- New booking -->
+
+          <button
+            class="primary-action"
+            (click)="newBooking()"
+          >
+
+            <span class="material-symbols-outlined">
+              add
+            </span>
+
+            <span>
+              New reservation
+            </span>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================== -->
+      <!-- KPI -->
+      <!-- ===================================================== -->
+
+      <section class="kpi-grid">
+
+
+        <!-- KPI 1 -->
+
+        <div class="kpi-card">
+
+          <div class="kpi-title">
+
+            <span>
+              Reserved Days
+            </span>
+
+            <div class="kpi-icon dark">
+              <span class="material-symbols-outlined">
+                event_available
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="kpi-value">
+            <span>22</span>
+            <small>/ 31 j</small>
+          </div>
+
+
+          <div class="kpi-footer">
+
+            <span class="positive-badge">
+              <span class="material-symbols-outlined">
+                trending_up
+              </span>
+
+              +12%
+            </span>
+
+            <span>
+              78% Overall rate
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- KPI 2 -->
+
+        <div class="kpi-card">
+
+          <div class="kpi-title">
+
+            <span>
+              Total Reservations
+            </span>
+
+            <div class="kpi-icon blue">
+
+              <span class="material-symbols-outlined">
+                domain_verification
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="kpi-value">
+
+            <span>
+              48
+            </span>
+
+            <small>
+              dossiers
+            </small>
+
+          </div>
+
+
+          <div class="kpi-footer">
+
+            <span class="blue-badge">
+
+              <span class="material-symbols-outlined">
+                arrow_upward
+              </span>
+
+              +14%
+
+            </span>
+
+            <span>
+              vs. previous month
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- KPI 3 -->
+
+        <div class="kpi-card">
+
+          <div class="kpi-title">
+
+            <span>
+              On hold
+            </span>
+
+            <div class="kpi-icon pending">
+
+              <span class="material-symbols-outlined">
+                hourglass_top
+              </span>
+
+              <span class="pending-dot"></span>
+
+            </div>
+
+          </div>
+
+
+          <div class="kpi-value">
+
+            <span>
+              05
+            </span>
+
+            <small>
+              to be validated
+            </small>
+
+          </div>
+
+
+          <div class="kpi-footer">
+
+            <span class="pending-badge">
+
+              <span class="small-dot"></span>
+
+              2 urgentes
+
+            </span>
+
+            <span>
+              &lt; 4h remaining
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- KPI 4 -->
+
+        <div class="kpi-card">
+
+          <div class="kpi-title">
+
+            <span>
+              Estimated Income
+            </span>
+
+            <div class="kpi-icon green">
+
+              <span class="material-symbols-outlined">
+                payments
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="kpi-value">
+
+            <span>
+              8,420
+            </span>
+
+            <small>
+              €
+            </small>
+
+          </div>
+
+
+          <div class="kpi-footer">
+
+            <span class="positive-badge">
+
+              <span class="material-symbols-outlined">
+                north_east
+              </span>
+
+              +18.5%
+
+            </span>
+
+            <span>
+              Objective: 9,000 €
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================== -->
+      <!-- MAIN GRID -->
+      <!-- ===================================================== -->
+
+      <section class="main-grid">
+
+
+        <!-- =================================================== -->
+        <!-- LEFT -->
+        <!-- =================================================== -->
+
+        <div class="left-column">
+
+
+          <!-- ================================================= -->
+          <!-- CALENDAR -->
+          <!-- ================================================= -->
+
+          <div class="card calendar-card">
+
+            <div class="card-header">
+
+              <div class="calendar-title">
+
+                <h2>
+                  {{currentMonthYear}}
+                </h2>
+
+                <span class="active-days">
+                  31 Active Days
+                </span>
+
+              </div>
+
+
+              <div class="calendar-controls">
+
+                <button
+                  (click)="previousMonth()"
+                  title="Mois précédent"
+                >
+
+                  <span class="material-symbols-outlined">
+                    chevron_left
+                  </span>
+
+                </button>
+
+
+                <button
+                  (click)="goToday()"
+                  class="today-button"
+                >
+                  Today
+                </button>
+
+
+                <button
+                  (click)="nextMonth()"
+                  title="Mois suivant"
+                >
+
+                  <span class="material-symbols-outlined">
+                    chevron_right
+                  </span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- DAYS -->
+
+            <div class="weekdays">
+
+              <div>Lun</div>
+              <div>Mar</div>
+              <div>Mer</div>
+              <div>Jeu</div>
+              <div>Ven</div>
+              <div>Sam</div>
+              <div>Dim</div>
+
+            </div>
+
+
+            <!-- CALENDAR -->
+
+            <div class="calendar-grid">
+
+              @for (calendarDay of calendarDays; track $index) {
+
+                <div class="calendar-cell">
+
+                  <button
+                    type="button"
+                    class="calendar-day"
+                    [class.reserved]="calendarDay.status === 'reserved'"
+                    [class.today]="calendarDay.status === 'today'"
+                    [class.pending]="calendarDay.status === 'pending'"
+                    [class.available]="calendarDay.status === 'available'"
+                    [class.other-month]="calendarDay.monthOffset !== 0"
+                    [class.selected]="
+                      calendarDay.day === selectedDay &&
+                      calendarDay.monthOffset === 0
+                    "
+                    (click)="selectDay(calendarDay)"
+                  >
+
+                    {{ calendarDay.day }}
+
+                    @if (
+                      calendarDay.status === 'reserved' ||
+                      calendarDay.status === 'today' ||
+                      calendarDay.status === 'pending'
+                      ) {
+
+                      <span class="day-indicator"></span>
+
+                    }
+
+                  </button>
+
+                </div>
+
+              }
+
+            </div>
+
+
+            <!-- LEGEND -->
+
+            <div class="calendar-legend">
+
+              <div>
+                <span class="legend-square reserved-color"></span>
+                <span>Reserve (22 j)</span>
+              </div>
+
+              <div>
+                <span class="legend-square today-color"></span>
+                <span>Today (15 Oct)</span>
+              </div>
+
+              <div>
+                <span class="legend-square pending-color">
+                  <span></span>
+                </span>
+                <span>On hold (2 j)</span>
+              </div>
+
+              <div>
+                <span class="legend-square available-color"></span>
+                <span>Free / Available (7 j)</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- CHART -->
+          <!-- ================================================= -->
+
+          <div class="card chart-card">
+
+            <div class="chart-header">
+
+              <div>
+
+                <div class="chart-title">
+
+                  <h3>
+                    Statistics — Weekly occupancy rate
+                  </h3>
+
+                  <span class="average-badge">
+                    Moy. 82%
+                  </span>
+
+                </div>
+
+                <span class="chart-description">
+                  Monitoring actual performance vs. maximum capacity
+                </span>
+
+              </div>
+
+
+              <!-- TOGGLE -->
+
+              <div class="chart-toggle">
+
+                <button
+                  [class.active]="chartMode === 'weekly'"
+                  (click)="setChartMode('weekly')"
+                >
+                  Weekly
+                </button>
+
+                <button
+                  [class.active]="chartMode === 'monthly'"
+                  (click)="setChartMode('monthly')"
+                >
+                  Monthly
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- SVG -->
+
+            <div class="chart-container">
+
+              @if (selectedChartPoint) {
+
+                <div
+                  class="chart-tooltip"
+                  [style.left.%]="
+                    (selectedChartPoint.cx / 500) * 100
+                  "
+                >
+
+                  {{ selectedChartPoint.info }}
+
+                </div>
+
+              }
+
+
+              <svg
+                viewBox="0 0 500 150"
+                preserveAspectRatio="none"
+                class="chart-svg"
+              >
+
+                <defs>
+
+                  <linearGradient
+                    id="occupancyGradient"
+                    x1="0"
+                    x2="0"
+                    y1="0"
+                    y2="1"
+                  >
+
+                    <stop
+                      offset="0%"
+                      stop-color="#0051d5"
+                      stop-opacity="0.28"
+                    />
+
+                    <stop
+                      offset="100%"
+                      stop-color="#0051d5"
+                      stop-opacity="0"
+                    />
+
+                  </linearGradient>
+
+                </defs>
+
+
+                <!-- Guidelines -->
+
+                <line
+                  x1="0"
+                  x2="500"
+                  y1="20"
+                  y2="20"
+                  stroke="#dce9ff"
+                  stroke-dasharray="4,4"
+                />
+
+                <line
+                  x1="0"
+                  x2="500"
+                  y1="65"
+                  y2="65"
+                  stroke="#dce9ff"
+                  stroke-dasharray="4,4"
+                />
+
+                <line
+                  x1="0"
+                  x2="500"
+                  y1="110"
+                  y2="110"
+                  stroke="#dce9ff"
+                  stroke-dasharray="4,4"
+                />
+
+
+                <!-- Area -->
+
+                <path
+                  class="chart-area"
+                  d="
+                    M 0 110
+                    Q 60 90, 125 50
+                    T 250 35
+                    T 375 60
+                    T 500 25
+                    L 500 150
+                    L 0 150
+                    Z
+                  "
+                  fill="url(#occupancyGradient)"
+                />
+
+
+                <!-- Line -->
+
+                <path
+                  class="chart-line"
+                  d="
+                    M 0 110
+                    Q 60 90, 125 50
+                    T 250 35
+                    T 375 60
+                    T 500 25
+                  "
+                  fill="none"
+                  stroke="#0051d5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+
+
+                <!-- Points -->
+
+                @for (point of chartPoints; track point.label) {
+
+                  <circle
+                    class="data-point"
+                    [class.highlight]="point.label === 'Sem 42'"
+                    [attr.cx]="point.cx"
+                    [attr.cy]="point.cy"
+                    [attr.r]="point.label === 'Sem 42' ? 5.5 : 4"
+                    fill="#0051d5"
+                    stroke="#ffffff"
+                    stroke-width="2"
+                    (mouseenter)="selectChartPoint(point)"
+                    (mouseleave)="hideChartTooltip()"
+                  />
+
+                }
+
+              </svg>
+
+            </div>
+
+
+            <!-- AXIS -->
+
+            <div class="chart-axis">
+
+              @for (point of chartPoints; track point.label) {
+
+                <div
+                  [class.highlight]="point.label === 'Sem 42'"
+                >
+
+                  <strong>
+                    {{ point.label }}
+                  </strong>
+
+                  <span>
+                    {{ point.value }}
+                  </span>
+
+                </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================== -->
+        <!-- RIGHT -->
+        <!-- =================================================== -->
+
+        <div class="right-column">
+
+
+          <!-- ================================================= -->
+          <!-- RECENT BOOKINGS -->
+          <!-- ================================================= -->
+
+          <div class="card bookings-card">
+
+            <div class="card-header">
+
+              <div class="section-title">
+
+                <span class="material-symbols-outlined">
+                  receipt_long
+                </span>
+
+                <h3>
+                  Recent Bookings
+                </h3>
+
+              </div>
+
+
+              <a href="#">
+                See all
+
+                <span class="material-symbols-outlined">
+                  arrow_forward
+                </span>
+
+              </a>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="booking-search">
+
+              <span class="material-symbols-outlined">
+                search
+              </span>
+
+              <input
+                type="text"
+                placeholder="Filter customer or room..."
+                [(ngModel)]="bookingSearch"
+              />
+
+            </div>
+
+
+            <!-- BOOKINGS -->
+
+            <div class="booking-list">
+
+              @for (
+                booking of filteredBookings;
+                track booking.name
+                ) {
+
+                <div class="booking-item">
+
+                  <div class="booking-user">
+
+                    <div
+                      class="booking-avatar"
+                      [class]="booking.avatarClass"
+                    >
+                      {{ booking.initials }}
+                    </div>
+
+
+                    <div class="booking-details">
+
+                      <strong>
+                        {{ booking.name }}
+                      </strong>
+
+                      <span>
+                        {{ booking.room }} · {{ booking.dates }}
+                      </span>
+
+                      <b>
+                        {{ booking.price }} €
+                      </b>
+
+                    </div>
+
+                  </div>
+
+
+                  <span
+                    class="booking-status"
+                    [class.pending-status]="
+                      booking.status === 'On hold'
+                    "
+                  >
+                    {{ booking.status }}
+                  </span>
+
+                </div>
+
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- ROOMS -->
+          <!-- ================================================= -->
+
+          <div class="card rooms-card">
+
+            <div>
+
+              <div class="card-header">
+
+                <h3>
+                  State of the Park Rooms
+                </h3>
+
+                <button class="settings-button">
+
+                  <span class="material-symbols-outlined">
+                    tune
+                  </span>
+
+                </button>
+
+              </div>
+
+
+              <p class="room-description">
+                Current availability across the 24 managed units
+              </p>
+
+
+              <!-- CAPACITY -->
+
+              <div class="capacity-list">
+
+                @for (room of occupancy; track room.name) {
+
+                  <div class="capacity-item">
+
+                    <div class="capacity-header">
+
+                      <span>
+                        {{ room.name }}
+                        ({{ room.occupied }}/{{ room.total }})
+                      </span>
+
+                      <strong>
+                        {{ room.percentage }}%
+                      </strong>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                      <div
+                        class="progress-bar"
+                        [style.width.%]="room.percentage"
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+                }
+
+              </div>
+
+            </div>
+
+
+            <!-- MAINTENANCE -->
+
+            <div
+              class="maintenance"
+              (click)="markMaintenanceDone()"
+            >
+
+              <div class="maintenance-content">
+
+                <span class="material-symbols-outlined">
+                  build_circle
+                </span>
+
+                <div>
+
+                  <strong>
+                    Interview with Ch. 204
+                  </strong>
+
+                  <span>
+                    Ready at 4:30 PM today
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <button
+                type="button"
+                title="Marquer terminé"
+              >
+
+                <span class="material-symbols-outlined">
+                  check_circle
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</div>

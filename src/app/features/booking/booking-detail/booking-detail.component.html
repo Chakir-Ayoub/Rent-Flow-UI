@@ -1,0 +1,159 @@
+<div class="booking-modal">
+
+  <div class="modal-header">
+
+    <div>
+      <h2>Booking #{{data.referenceId}}</h2>
+      <span class="badge cancelled">{{ data.type }}</span>
+    </div>
+
+    <button class="close-btn">
+      <i class="pi pi-times"></i>
+    </button>
+
+  </div>
+
+  <!-- Guest -->
+
+  <div class="card">
+
+    <h3>👤 Guest Information</h3>
+
+    <div class="grid">
+
+      <div>
+        <label>Guest</label>
+        <span>{{data.guestName}}</span>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <span>{{data.email}}</span>
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <span>{{data.phone}}</span>
+      </div>
+
+      <div>
+        <label>Language</label>
+        <span>{{data.language}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Reservation -->
+
+  <div class="card">
+
+    <h3>🏠 Reservation</h3>
+
+    <div class="grid">
+
+      <div>
+        <label>Apartment</label>
+        <span>{{data.apartmentName}}</span>
+      </div>
+
+      <div>
+        <label>Channel</label>
+        <span>{{ data.channelName }}</span>
+      </div>
+
+      <div>
+        <label>Arrival</label>
+        <span>{{data.arrival}}</span>
+      </div>
+
+      <div>
+        <label>Departure</label>
+        <span>{{data.departure}}</span>
+      </div>
+
+      <div>
+        <label>Check In</label>
+        <span>{{data.checkIn}}</span>
+      </div>
+
+      <div>
+        <label>Check Out</label>
+        <span>{{data.checkOut}}</span>
+      </div>
+
+      <div>
+        <label>Adults</label>
+        <span>{{data.adults}}</span>
+      </div>
+
+      <div>
+        <label>Children</label>
+        <span>{{data.children}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Payment -->
+  <div class="card">
+
+    <h3>💳 Payment</h3>
+    <div class="grid">
+
+      <div>
+        <label>Price</label>
+        <span>{{data.price}}</span>
+      </div>
+
+      <div>
+        <label>Paid</label>
+        <span class="no">{{data.pricePaid}}</span>
+      </div>
+
+      <div>
+        <label>DepositPaid</label>
+        <span>{{data.depositPaid}}</span>
+      </div>
+
+      <div>
+        <label>Commission</label>
+        <span>{{data.commissionIncluded}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Notice -->
+
+  <div class="card">
+
+    <h3>📝 Notice</h3>
+
+    <div class="notice">
+
+      {{data.notice}}
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+
+  <div class="modal-footer">
+
+    <a
+      [href]=data.guestAppUrl
+      target="_blank"
+      class="btn-primary">
+
+      Open Guest App
+
+    </a>
+
+  </div>
+
+</div>

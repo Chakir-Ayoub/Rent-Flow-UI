@@ -1,0 +1,56 @@
+/* HEADER */
+
+.app-header{
+  height:70px;
+  background:#ffffff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 30px;
+  border-bottom:1px solid #e5e7eb;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:24px;
+  font-weight:700;
+  color:#1e293b;
+}
+
+.logo i{
+  color:#2563eb;
+  font-size:22px;
+}
+
+.header-actions{
+  display:flex;
+  gap:12px;
+}
+
+.header-btn{
+  width:42px;
+  height:42px;
+  border:none;
+  background:#f8fafc;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.header-btn i{
+  font-size:18px;
+  color:#475569;
+}
+
+.header-btn:hover{
+  background:#2563eb;
+}
+
+.header-btn:hover i{
+  color:#fff;
+}
+
+

@@ -1,0 +1,77 @@
+<div class="table-container">
+
+  <div class="table-header">
+    <h2>Bookings List</h2>
+
+    <div class="actions">
+      <input type="text" placeholder="Rechercher..." />
+
+      <button class="btn-filter">
+        Filtrer
+      </button>
+    </div>
+
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Phone</th>
+      <th>Related Name</th>
+      <th>ChannelName</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+      <tbody>
+    <tr *ngFor="let booking of bookings">
+      <td>{{booking.firstname}}</td>
+      <td>{{booking.lastname}}</td>
+      <td>{{booking.phone}}</td>
+      <td>{{booking.relatedName}}</td>
+      <td>{{booking.channelName}}</td>
+      <td><button class="btn btn-filter" (click)="openDialog(booking)">Detail</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+
+    <div class="pagination">
+
+      <button
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage === 0">
+
+        Précédent
+
+      </button>
+
+      <div class="pages">
+
+        <button
+          *ngFor="let page of pages"
+          (click)="goToPage(page)"
+          [class.active-page]="page === currentPage">
+
+          {{ page + 1 }}
+
+        </button>
+
+      </div>
+
+      <button
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages - 1">
+
+        Suivant
+
+      </button>
+
+    </div>
+
+  </div>
+  <div>
+  </div>
+</div>
