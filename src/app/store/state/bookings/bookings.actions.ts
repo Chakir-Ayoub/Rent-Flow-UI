@@ -16,3 +16,8 @@ export const setSelectedPropertyName = createAction(
   '[Bookings] Set Selected Property Name',
   props<{ propertyName: any }>()
 );
+
+export const setSelectedPropertyCode=createAction(
+    '[Bookings] Set Selected Property Code',
+    props<{ propertyCode: any }>()
+);
