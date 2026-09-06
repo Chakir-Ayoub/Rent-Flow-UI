@@ -19,5 +19,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/booking/booking-list-component/booking-list-component.component')
         .then(m => m.BookingListComponentComponent)
+  },
+
+  {
+    path: 'activity',
+    loadComponent: () =>
+      import('./features/activity/activity-list/activity-list.component')
+    .then(m => m.ActivityListComponent)
   }
 ];

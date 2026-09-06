@@ -33,3 +33,8 @@ export const selectSelectedPropertyName = createSelector(
   selectBookingsState,
   (state) => state?.selectedPropertyName ?? null
 );
+
+export const selectSelectedPropertyCode = createSelector(
+  selectBookingsState,
+  state => state.selectedPropertyCode
+);
