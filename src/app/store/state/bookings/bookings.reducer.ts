@@ -3,12 +3,13 @@ import {
   fetchBookingBySelectedPropertyAction, fetchBookingBySelectedPropertyFailed, fetchBookingBySelectedPropertySuccess,
   fetchBookingsActions,
   fetchBookingsFailed,
-  fetchBookingsSuccess,
+  fetchBookingsSuccess, setSelectedPropertyName,
 } from './bookings.actions';
 import { BookingsState } from './bookings.interface';
 
 export const initialBookingsState: Readonly<BookingsState> = {
   bookings: null,
+  selectedPropertyName: null,
   isLoading: false,
   inclVat: false,
   error: null,
@@ -51,5 +52,9 @@ export const bookingsReducer = createReducer<BookingsState>(
       ...state,
       isLoading: false,
       error: 'Une erreur est survenue',
-    })))
+    }))),
+  on(setSelectedPropertyName, (state, { propertyName }) => ({
+    ...state,
+    selectedPropertyName: propertyName,
+  }))
 );
